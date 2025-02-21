@@ -1,0 +1,85 @@
+<app-navbar></app-navbar>
+<div class="home-container">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Your Health Is Our Top Priority</h1>
+        <p>Experience world-class healthcare with our team of expert doctors. Book your appointment today and take the first step towards better health.</p>
+        <div class="hero-buttons">
+          <button class="btn primary">Book Appointment</button>
+          <button class="btn secondary">Learn More</button>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Features Section -->
+    <section class="features">
+      <div class="features-grid">
+        <div class="feature-card" *ngFor="let feature of features">
+          <i class="fas fa-{{feature.icon}}"></i>
+          <h3>{{feature.title}}</h3>
+          <p>{{feature.description}}</p>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Services Section -->
+    <section class="services">
+      <h2>Our Medical Services</h2>
+      <p class="section-description">We provide a wide range of medical services to cover all your healthcare needs and meet with the highest standards of care.</p>
+      <div class="services-grid">
+        <div class="service-card" *ngFor="let service of services">
+          <i class="fas fa-{{service.icon}}"></i>
+          <h3>{{service.title}}</h3>
+          <p>{{service.description}}</p>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Doctors Section -->
+    <section class="doctors">
+      <h2>Meet Our Doctors</h2>
+      <p class="section-description">Our team of experienced medical professionals is dedicated to providing you with the best possible care.</p>
+      <div class="doctors-grid">
+        <div class="doctor-card" *ngFor="let doctor of doctors">
+          <img [src]="doctor.image" [alt]="doctor.name">
+          <h3>{{doctor.name}}</h3>
+          <p>{{doctor.speciality}}</p>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Contact Section -->
+    <section class="contact">
+      <h2>Contact Us</h2>
+      <p class="section-description">Have any questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+      <div class="contact-container">
+        <div class="contact-info">
+          <div class="info-item">
+            <i class="fas fa-phone"></i>
+            <p>Phone</p>
+            <p>+1 (555) 000-0000</p>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-envelope"></i>
+            <p>Email</p>
+            <p>contact&#64;medicare.com</p>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <p>Address</p>
+            <p>123 Medical Center Dr, Healthcare City, FL 12345</p>
+          </div>
+        </div>
+        <form class="contact-form" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
+          <input type="text" name="name" ngModel placeholder="Your Name" required>
+          <input type="email" name="email" ngModel placeholder="Your Email" required>
+          <input type="text" name="subject" ngModel placeholder="Subject" required>
+          <textarea name="message" ngModel placeholder="Your Message" required></textarea>
+          <button type="submit" class="btn primary">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </div>
+  
+  
