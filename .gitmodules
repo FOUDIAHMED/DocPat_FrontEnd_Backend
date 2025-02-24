@@ -1,0 +1,3 @@
+[submodule "frontend/frontend/DocPatient"]
+	path = frontend/frontend/DocPatient
+	url = https://github.com/FOUDIAHMED/DocPat_FrontEnd_Backend
