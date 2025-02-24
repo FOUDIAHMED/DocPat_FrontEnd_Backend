@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/DocPatient
+    username: postgres
+    password: ahmed
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+
+# JWT Configuration
+jwt:
+  secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+  expiration: 86400000
+
+# Custom configurations
+app:
+  cors:
+    allowed-origins: http://localhost:4200,http://localhost:3000
+  upload:
+    dir: uploads/dev
+  email:
+    enabled: false
+    from: noreply@docpatient-dev.com
