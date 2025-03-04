@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common"
 import { Component } from "@angular/core"
 import { FormsModule } from "@angular/forms"
-import { NavbarComponent } from "../layouts/navbar/navbar.component"
+import { NavbarComponent } from "../../layouts/navbar/navbar.component"
 
 interface Doctor {
   name: string
@@ -19,7 +19,7 @@ interface Service {
   selector: "app-home",
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.css"],
-  imports:[CommonModule,FormsModule,NavbarComponent]
+  imports:[CommonModule,FormsModule]
 })
 export class HomeComponent {
   doctors: Doctor[] = [

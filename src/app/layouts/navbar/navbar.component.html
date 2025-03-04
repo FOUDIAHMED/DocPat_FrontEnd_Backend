@@ -4,10 +4,10 @@
         <div class="flex">
           <div class="flex-shrink-0 flex items-center">
             <img class="h-8 w-auto" src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-69Kc6O2jiD0vgVjZxPi73NOrNuMw9Q.png" alt="MediCare Logo">
-            <span class="ml-2 text-xl font-bold text-blue-600">MediCare</span>
+            <span class="ml-2 text-xl font-bold text-blue-600">DocPatient</span>
           </div>
           <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-            <a href="#" class="border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+            <a [routerLink]="['/home']"  class="border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
               Home
             </a>
             <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
@@ -16,19 +16,19 @@
             <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
               Doctors
             </a>
-            <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+            <a  routerLinkActive="router-link-active"  class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
               Contact
             </a>
           </div>
         </div>
         <div class="hidden sm:ml-6 sm:flex sm:items-center space-x-4">
-          <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium">
+          <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium" type="submit">
             Book Appointment
           </button>
-          <a routerLink="/auth/login" class="text-gray-500 hover:text-gray-700 px-4 py-2 rounded-md text-sm font-medium">
+          <a href="" routerLink="/login" class="text-gray-500 hover:text-gray-700 px-4 py-2 rounded-md text-sm font-medium">
             Login
           </a>
-          <a routerLink="/auth/register" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-md text-sm font-medium">
+          <a routerLink="/register" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-md text-sm font-medium">
             Register
           </a>
         </div>
