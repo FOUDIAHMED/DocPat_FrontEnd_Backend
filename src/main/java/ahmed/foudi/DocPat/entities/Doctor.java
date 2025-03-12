@@ -1,6 +1,7 @@
 package ahmed.foudi.DocPat.entities;
 
 import ahmed.foudi.DocPat.entities.enums.AppRole;
+import ahmed.foudi.DocPat.entities.enums.MedicalSpecialty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -27,6 +28,9 @@ public class Doctor extends AppUser{
 
     @Min(value = 0, message = "Consultation fee cannot be negative")
     private double consultation;
+
+    @Enumerated(EnumType.STRING)
+    private MedicalSpecialty medicalSpecialty;
 
     @OneToMany(mappedBy = "doctor", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Appointment> appointements;
