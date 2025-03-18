@@ -1,11 +1,13 @@
 package ahmed.foudi.DocPat.services.impl;
 
+import ahmed.foudi.DocPat.dao.AdminRepository;
 import ahmed.foudi.DocPat.dao.DoctorRepository;
 import ahmed.foudi.DocPat.dao.PatientRepository;
 import ahmed.foudi.DocPat.dto.request.DoctorRequest;
 import ahmed.foudi.DocPat.dto.request.LoginRequest;
 import ahmed.foudi.DocPat.dto.request.PatientRequest;
 import ahmed.foudi.DocPat.dto.response.AuthResponse;
+import ahmed.foudi.DocPat.entities.Admin;
 import ahmed.foudi.DocPat.entities.Doctor;
 import ahmed.foudi.DocPat.entities.Patient;
 import ahmed.foudi.DocPat.entities.enums.AppRole;
@@ -29,6 +31,7 @@ public class AuthServiceImpl implements AuthService {
     private final AuthenticationManager authenticationManager;
     private final DoctorRepository doctorRepository;
     private final PatientRepository patientRepository;
+    private final AdminRepository adminRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     @Override
@@ -73,6 +76,19 @@ public class AuthServiceImpl implements AuthService {
                         .lastName(patient.getLastName())
                         .build();
             }
+            var admin = adminRepository.findByEmail(email);
+            if (admin.isPresent()) {
+                Admin patient = admin.get();
+                var token = jwtService.generateToken(userDetails);
+                return AuthResponse.builder()
+                        .token(token)
+                        .email(email)
+                        .role(patient.getAppRole()) // Get role from the database
+                        .id(patient.getId())
+                        .firstName(patient.getFirstName())
+                        .lastName(patient.getLastName())
+                        .build();
+            }
 
             throw UnauthorizedAccessException.invalidCredentials();
         } catch (Exception e) {
@@ -96,6 +112,7 @@ public class AuthServiceImpl implements AuthService {
         doctor.setFirstName(request.getFirstName());
         doctor.setLastName(request.getLastName());
         doctor.setPhoneNumber(request.getPhoneNumber());
+        doctor.setMedicalSpecialty(request.getMedicalSpecialty());
         doctor.setLicenceNumber(request.getLicenceNumber());
         doctor.setAppRole(AppRole.DOCTOR);
         doctor=doctorRepository.save(doctor);
@@ -107,6 +124,7 @@ public class AuthServiceImpl implements AuthService {
 
         return AuthResponse.builder()
                 .token(token)
+                .email(doctor.getEmail())
                 .firstName(doctor.getFirstName())
                 .lastName(doctor.getLastName())
                 .role(AppRole.DOCTOR)

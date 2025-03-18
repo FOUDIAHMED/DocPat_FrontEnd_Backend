@@ -1,5 +1,6 @@
 package ahmed.foudi.DocPat.controllers;
 
+import ahmed.foudi.DocPat.dto.embedded.DoctorDto;
 import ahmed.foudi.DocPat.dto.response.DoctorResponse;
 import ahmed.foudi.DocPat.entities.Doctor;
 import ahmed.foudi.DocPat.services.interfaces.DoctorService;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/doctors")
+@RequestMapping("/doctors")
 @RequiredArgsConstructor
 public class DoctorController {
 
@@ -20,6 +21,10 @@ public class DoctorController {
 
     @GetMapping
     public ResponseEntity<List<DoctorResponse>> getAllDoctors() {
+        return ResponseEntity.ok(doctorService.findAll());
+    }
+    @GetMapping("/all")
+    public ResponseEntity<List<DoctorResponse>> getAllDoctorsPublic() {
         return ResponseEntity.ok(doctorService.findAll());
     }
 
