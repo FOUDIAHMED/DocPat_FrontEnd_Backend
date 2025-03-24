@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 @Service
@@ -22,8 +23,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public AppointmentResponse save(AppointmentRequest appointement) {
         Appointment appointment=appointementMapper.toEntity(appointement);
-        appointment.setAppointementDate(LocalDate.now());
-        appointment.setAppointementTime(LocalDateTime.now());
+
 
         return appointementMapper.toResponse( appointementRepository.save(appointment));
     }

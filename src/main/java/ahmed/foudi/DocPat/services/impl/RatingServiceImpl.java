@@ -1,5 +1,6 @@
 package ahmed.foudi.DocPat.services.impl;
 
+import ahmed.foudi.DocPat.dto.request.RatingRequest;
 import ahmed.foudi.DocPat.dto.response.RatingResponse;
 import ahmed.foudi.DocPat.entities.Rating;
 import ahmed.foudi.DocPat.mappers.RatingMapper;
@@ -18,8 +19,8 @@ public class RatingServiceImpl implements RatingService {
     private final RatingMapper ratingMapper;
 
     @Override
-    public RatingResponse save(Rating rating) {
-        return ratingMapper.toResponse( ratingRepository.save(rating));
+    public RatingResponse save(RatingRequest rating) {
+        return ratingMapper.toResponse( ratingRepository.save(ratingMapper.toEntity(rating)));
     }
 
     @Override

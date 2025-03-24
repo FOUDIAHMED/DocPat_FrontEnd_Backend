@@ -13,6 +13,8 @@ public class PatientRequest {
     @NotBlank(message = "Last name is required")
     private String lastName;
 
+    private String profilePicture;
+
     @NotBlank(message = "Email is required")
     @Email(message = "Invalid email format")
     private String email;

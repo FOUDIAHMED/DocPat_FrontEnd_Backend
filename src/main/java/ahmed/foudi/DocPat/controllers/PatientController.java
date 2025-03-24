@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/patients")
+@RequestMapping("/patients")
+@CrossOrigin(origins = "http://localhost:4200")
 public class PatientController {
 
     private final PatientService patientService;
@@ -25,13 +26,21 @@ public class PatientController {
         return ResponseEntity.ok(patientService.findAll());
     }
 
-    @PreAuthorize("hasAnyRole('PATIENT', 'ADMIN')")
+    @PreAuthorize("hasRole('PATIENT')")
     @GetMapping("/{id}")
     public ResponseEntity<PatientResponse> getPatientById(@PathVariable Long id) {
+        System.out.println("hahahahaha");
         return ResponseEntity.ok(patientService.findById(id));
     }
+    @PreAuthorize("hasRole('PATIENT')")
+    @GetMapping("/hahas")
+    public String haha() {
+        return "hahahahaha";
 
-    @PreAuthorize("hasRole('ADMIN')")
+    }
+
+
+    @PreAuthorize("hasRole('PATIENT')")
     @PostMapping
     public ResponseEntity<PatientResponse> createPatient(@Valid @RequestBody Patient request) {
         return ResponseEntity.ok(patientService.save(request));

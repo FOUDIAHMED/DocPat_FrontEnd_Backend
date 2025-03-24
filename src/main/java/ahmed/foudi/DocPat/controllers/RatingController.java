@@ -1,5 +1,6 @@
 package ahmed.foudi.DocPat.controllers;
 
+import ahmed.foudi.DocPat.dto.request.RatingRequest;
 import ahmed.foudi.DocPat.dto.response.RatingResponse;
 import ahmed.foudi.DocPat.entities.Rating;
 import ahmed.foudi.DocPat.services.interfaces.RatingService;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/ratings")
+@RequestMapping("/ratings")
 @RequiredArgsConstructor
 public class RatingController {
 
@@ -31,14 +32,14 @@ public class RatingController {
 
     @PreAuthorize("hasRole('PATIENT')")
     @PostMapping
-    public ResponseEntity<RatingResponse> createRating(@RequestBody Rating rating) {
+    public ResponseEntity<RatingResponse> createRating(@RequestBody RatingRequest rating) {
         return ResponseEntity.ok(ratingService.save(rating));
     }
 
     @PreAuthorize("hasRole('PATIENT')")
     @PutMapping("/{id}")
-    public ResponseEntity<RatingResponse> updateRating(@PathVariable Long id, @RequestBody Rating rating) {
-        rating.setId(id);
+    public ResponseEntity<RatingResponse> updateRating(@PathVariable Long id, @RequestBody RatingRequest rating) {
+
         return ResponseEntity.ok(ratingService.save(rating));
     }
 

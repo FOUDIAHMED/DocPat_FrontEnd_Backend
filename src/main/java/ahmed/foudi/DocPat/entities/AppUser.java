@@ -32,6 +32,8 @@ public abstract class AppUser {
 
     @NotBlank(message = "Last name is required")
     private String lastName;
+    @NotBlank(message = "Profile Picture is required")
+    private String profilePicture;
 
     @Email(message = "Invalid email format")
     @Column(unique = true)

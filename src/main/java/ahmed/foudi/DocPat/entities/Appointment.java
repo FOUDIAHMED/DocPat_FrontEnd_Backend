@@ -2,12 +2,11 @@ package ahmed.foudi.DocPat.entities;
 
 import ahmed.foudi.DocPat.entities.enums.AppointementStatus;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Data
@@ -21,7 +20,7 @@ public class Appointment {
     private LocalDate appointementDate;
 
     @NotNull(message = "Appointment time is required")
-    private LocalDateTime appointementTime;
+    private LocalTime appointementTime;
 
     private String notes;
 
