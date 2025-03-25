@@ -15,6 +15,7 @@ public class DoctorRequest {
 
     @NotBlank(message = "Last name is required")
     private String lastName;
+
     private String profilePicture;
 
     @NotBlank(message = "Email is required")
@@ -27,6 +28,10 @@ public class DoctorRequest {
     @NotBlank(message = "Phone number is required")
     @Pattern(regexp = "^\\+?[0-9]{10,15}$", message = "Invalid phone number format")
     private String phoneNumber;
+
+    @NotBlank(message = "adresse is required")
+    private String address;
+
 
     @NotNull(message = "Speciality is required it should be GENERAL_MEDICINE,   // General Medicine\n" +
             "    CARDIOLOGY,         // Cardiology (Heart)\n" +

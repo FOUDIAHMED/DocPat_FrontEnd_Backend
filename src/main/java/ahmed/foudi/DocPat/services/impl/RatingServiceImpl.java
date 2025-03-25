@@ -1,10 +1,16 @@
 package ahmed.foudi.DocPat.services.impl;
 
+import ahmed.foudi.DocPat.dao.DoctorRepository;
+import ahmed.foudi.DocPat.dao.PatientRepository;
 import ahmed.foudi.DocPat.dto.request.RatingRequest;
 import ahmed.foudi.DocPat.dto.response.RatingResponse;
+import ahmed.foudi.DocPat.entities.Doctor;
+import ahmed.foudi.DocPat.entities.Patient;
 import ahmed.foudi.DocPat.entities.Rating;
 import ahmed.foudi.DocPat.mappers.RatingMapper;
 import ahmed.foudi.DocPat.dao.RatingRepository;
+import ahmed.foudi.DocPat.services.interfaces.DoctorService;
+import ahmed.foudi.DocPat.services.interfaces.PatientService;
 import ahmed.foudi.DocPat.services.interfaces.RatingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,10 +23,18 @@ public class RatingServiceImpl implements RatingService {
     
     private final RatingRepository ratingRepository;
     private final RatingMapper ratingMapper;
+    private final DoctorRepository doctorRepository;
+    private final PatientRepository patientRepository;
 
     @Override
-    public RatingResponse save(RatingRequest rating) {
-        return ratingMapper.toResponse( ratingRepository.save(ratingMapper.toEntity(rating)));
+    public RatingResponse save(RatingRequest ratingrequest) {
+        Doctor doctor=doctorRepository.findById(ratingrequest.getDoctorId()).get();
+        Patient patient=patientRepository.findById(ratingrequest.getPatientId()).get();
+
+        Rating rating=ratingMapper.toEntity(ratingrequest);
+        rating.setDoctor(doctor);
+        rating.setPatient(patient);
+        return ratingMapper.toResponse( ratingRepository.save(rating));
     }
 
     @Override

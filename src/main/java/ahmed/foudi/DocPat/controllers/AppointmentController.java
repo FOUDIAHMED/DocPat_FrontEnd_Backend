@@ -40,7 +40,7 @@ public class AppointmentController {
     @PreAuthorize("hasRole('PATIENT')")
     @PostMapping
     public ResponseEntity<AppointmentResponse> createAppointment(@Valid @RequestBody AppointmentRequest request) {
-        System.out.println(request);
+
         return ResponseEntity.ok(appointmentService.save(request));
 
     }

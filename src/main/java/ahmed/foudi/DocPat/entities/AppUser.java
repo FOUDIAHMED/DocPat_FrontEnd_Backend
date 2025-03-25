@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,7 +33,10 @@ public abstract class AppUser {
 
     @NotBlank(message = "Last name is required")
     private String lastName;
-    @NotBlank(message = "Profile Picture is required")
+
+
+    private String address;
+
     private String profilePicture;
 
     @Email(message = "Invalid email format")

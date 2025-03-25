@@ -26,8 +26,7 @@ public class Patient extends AppUser {
     @Past(message = "Date of birth must be in the past")
     private LocalDate dateOfBirth;
 
-    @NotNull(message = "Address is required")
-    private String address;
+
 
     @NotNull(message = "Emergency contact is required")
     private String emergencyContact;

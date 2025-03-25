@@ -20,10 +20,7 @@ public class AuthController {
     public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest request) {
         return ResponseEntity.ok(authService.login(request));
     }
-    @GetMapping("/HAHA")
-    public String hello(){
-        return "Hello World";
-    }
+
 
     @PostMapping("/register/doctor")
     public ResponseEntity<AuthResponse> registerDoctor(@Valid @RequestBody DoctorRequest request) {

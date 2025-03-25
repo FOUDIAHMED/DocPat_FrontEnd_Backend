@@ -25,6 +25,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
@@ -114,6 +117,11 @@ public class AuthServiceImpl implements AuthService {
         doctor.setPhoneNumber(request.getPhoneNumber());
         doctor.setMedicalSpecialty(request.getMedicalSpecialty());
         doctor.setLicenceNumber(request.getLicenceNumber());
+        doctor.setAddress(request.getAddress());
+        doctor.setYearsOfExperience(request.getYearsOfExperience());
+        doctor.setConsultation(request.getConsultation());
+        doctor.setUpdated_at(LocalDate.now());
+        doctor.setProfilePicture(request.getProfilePicture());
         doctor.setAppRole(AppRole.DOCTOR);
         doctor=doctorRepository.save(doctor);
         UserDetails doc = User.withUsername(doctor.getEmail())
@@ -147,6 +155,7 @@ public class AuthServiceImpl implements AuthService {
         patient.setPhoneNumber(request.getPhoneNumber());
         patient.setDateOfBirth(request.getDateOfBirth());
         patient.setAddress(request.getAddress());
+        patient.setProfilePicture(request.getProfilePicture());
         patient.setEmergencyContact(request.getEmergencyContact());
         patient.setAppRole(AppRole.PATIENT);
         patient=patientRepository.save(patient);

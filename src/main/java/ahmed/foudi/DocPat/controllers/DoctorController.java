@@ -33,11 +33,7 @@ public class DoctorController {
         return ResponseEntity.ok(doctorService.findById(id));
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping
-    public ResponseEntity<DoctorResponse> createDoctor(@Valid @RequestBody Doctor request) {
-        return ResponseEntity.ok(doctorService.save(request));
-    }
+
 
     @PreAuthorize("hasAnyRole('DOCTOR', 'ADMIN')")
     @PutMapping("/{id}")

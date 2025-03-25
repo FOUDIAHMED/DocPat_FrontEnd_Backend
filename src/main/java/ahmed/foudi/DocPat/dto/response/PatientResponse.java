@@ -17,7 +17,7 @@ public class PatientResponse {
     private String email;
     private String phoneNumber;
     private LocalDate dateOfBirth;
-    private String adresse;
+    private String address;
     private String emergencyContact;
     private String profilePicture;
     private LocalDate created_at;

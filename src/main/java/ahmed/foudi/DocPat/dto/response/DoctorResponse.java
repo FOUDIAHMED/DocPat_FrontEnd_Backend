@@ -21,6 +21,7 @@ public class DoctorResponse {
     private String licenceNumber;
     private int yearsOfExperience;
     private double consultation;
+    private String address;
     private MedicalSpecialty medicalSpecialty;
     private LocalDate created_at;
     private LocalDate updated_at;
