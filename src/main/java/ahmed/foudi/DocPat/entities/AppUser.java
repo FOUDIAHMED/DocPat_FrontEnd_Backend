@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,6 +22,7 @@ import ahmed.foudi.DocPat.entities.enums.AppRole;
 @Data
 @RequiredArgsConstructor
 @AllArgsConstructor
+
 public abstract class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +34,9 @@ public abstract class AppUser {
     @NotBlank(message = "Last name is required")
     private String lastName;
 
+
+    private String address;
+
     @Email(message = "Invalid email format")
     @Column(unique = true)
     private String email;
@@ -42,7 +47,7 @@ public abstract class AppUser {
     @Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be 10 digits")
     private String phoneNumber;
 
-
+    @Enumerated(EnumType.STRING)
     private AppRole appRole;
 
     private LocalDate created_at;

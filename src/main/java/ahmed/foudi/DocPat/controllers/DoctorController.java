@@ -1,5 +1,6 @@
 package ahmed.foudi.DocPat.controllers;
 
+import ahmed.foudi.DocPat.dto.embedded.DoctorDto;
 import ahmed.foudi.DocPat.dto.response.DoctorResponse;
 import ahmed.foudi.DocPat.entities.Doctor;
 import ahmed.foudi.DocPat.services.interfaces.DoctorService;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/doctors")
+@RequestMapping("/doctors")
 @RequiredArgsConstructor
 public class DoctorController {
 
@@ -22,17 +23,17 @@ public class DoctorController {
     public ResponseEntity<List<DoctorResponse>> getAllDoctors() {
         return ResponseEntity.ok(doctorService.findAll());
     }
+    @GetMapping("/all")
+    public ResponseEntity<List<DoctorResponse>> getAllDoctorsPublic() {
+        return ResponseEntity.ok(doctorService.findAll());
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<DoctorResponse> getDoctorById(@PathVariable Long id) {
         return ResponseEntity.ok(doctorService.findById(id));
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping
-    public ResponseEntity<DoctorResponse> createDoctor(@Valid @RequestBody Doctor request) {
-        return ResponseEntity.ok(doctorService.save(request));
-    }
+
 
     @PreAuthorize("hasAnyRole('DOCTOR', 'ADMIN')")
     @PutMapping("/{id}")

@@ -1,6 +1,11 @@
 package ahmed.foudi.DocPat.services.impl;
 
+import ahmed.foudi.DocPat.dao.AgentRepository;
+import ahmed.foudi.DocPat.dao.PatientRepository;
+import ahmed.foudi.DocPat.dto.request.RatingRequest;
 import ahmed.foudi.DocPat.dto.response.RatingResponse;
+import ahmed.foudi.DocPat.entities.Agent;
+import ahmed.foudi.DocPat.entities.Patient;
 import ahmed.foudi.DocPat.entities.Rating;
 import ahmed.foudi.DocPat.mappers.RatingMapper;
 import ahmed.foudi.DocPat.dao.RatingRepository;
@@ -16,9 +21,17 @@ public class RatingServiceImpl implements RatingService {
     
     private final RatingRepository ratingRepository;
     private final RatingMapper ratingMapper;
+    private final AgentRepository doctorRepository;
+    private final PatientRepository patientRepository;
 
     @Override
-    public RatingResponse save(Rating rating) {
+    public RatingResponse save(RatingRequest ratingrequest) {
+        Agent doctor=doctorRepository.findById(ratingrequest.getDoctorId()).get();
+        Patient patient=patientRepository.findById(ratingrequest.getPatientId()).get();
+
+        Rating rating=ratingMapper.toEntity(ratingrequest);
+        rating.setDoctor(doctor);
+        rating.setPatient(patient);
         return ratingMapper.toResponse( ratingRepository.save(rating));
     }
 

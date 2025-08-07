@@ -35,7 +35,7 @@ public class Notification {
 
     @ManyToOne
     @NotNull(message = "Doctor is required")
-    private Doctor doctor;
+    private Agent agent;
 
     @PrePersist
     protected void onCreate() {

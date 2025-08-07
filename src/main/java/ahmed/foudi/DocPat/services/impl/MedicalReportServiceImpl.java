@@ -40,7 +40,7 @@ public class MedicalReportServiceImpl implements MedicalReportService {
     @Override
     public List<MedicalReportResponse> findByDoctorId(Long doctorId) {
         return medicalReportMapper.toResponseList(medicalReportRepository.findAll().stream()
-                .filter(m -> m.getDoctor().getId().equals(doctorId))
+                .filter(m -> m.getAgent().getId().equals(doctorId))
                 .toList());
     }
 

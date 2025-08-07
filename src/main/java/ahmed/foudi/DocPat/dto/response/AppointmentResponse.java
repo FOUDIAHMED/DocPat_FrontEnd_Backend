@@ -6,13 +6,13 @@ import ahmed.foudi.DocPat.entities.enums.AppointementStatus;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Data
 public class AppointmentResponse {
     private Long id;
     private LocalDate appointementDate;
-    private LocalDateTime appointementTime;
+    private LocalTime appointementTime;
     private String notes;
     private LocalDate created_at;
     private AppointementStatus status;

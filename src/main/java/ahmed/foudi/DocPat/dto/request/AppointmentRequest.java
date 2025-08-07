@@ -1,19 +1,19 @@
 package ahmed.foudi.DocPat.dto.request;
 
-import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Data
 public class AppointmentRequest {
 
-    private LocalDate appointementDate;
+    private LocalDate StartDate;
+    private LocalDate EndDate;
 
 
-    private LocalDateTime appointementTime;
+    private LocalTime appointementTime;
     
     private String notes;
 

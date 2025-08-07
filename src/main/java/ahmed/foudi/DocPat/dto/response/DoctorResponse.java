@@ -4,6 +4,7 @@ import ahmed.foudi.DocPat.dto.embedded.AppointementDto;
 import ahmed.foudi.DocPat.dto.embedded.MedicalReportDto;
 import ahmed.foudi.DocPat.dto.embedded.NotificationDto;
 import ahmed.foudi.DocPat.dto.embedded.RatingDto;
+import ahmed.foudi.DocPat.entities.enums.MedicalSpecialty;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -14,11 +15,14 @@ public class DoctorResponse {
     private Long id;
     private String firstName;
     private String lastName;
+    private String profilePicture;
     private String email;
     private String phoneNumber;
     private String licenceNumber;
     private int yearsOfExperience;
     private double consultation;
+    private String address;
+    private MedicalSpecialty medicalSpecialty;
     private LocalDate created_at;
     private LocalDate updated_at;
     private List<AppointementDto> appointements;
