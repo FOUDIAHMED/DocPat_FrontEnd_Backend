@@ -40,7 +40,7 @@ public class NotificationServiceImpl implements NotificationService {
     @Override
     public List<NotificationResponse> findByDoctorId(Long doctorId) {
         return notificationMapper.toResponseList(notificationRepository.findAll().stream()
-                .filter(n -> n.getDoctor().getId().equals(doctorId))
+                .filter(n -> n.getAgent().getId().equals(doctorId))
                 .toList());
     }
 

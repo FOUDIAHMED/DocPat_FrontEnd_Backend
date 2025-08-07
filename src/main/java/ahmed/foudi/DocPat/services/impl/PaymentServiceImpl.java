@@ -38,7 +38,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public List<Payment> findByDoctorId(Long doctorId) {
         return payementRepository.findAll().stream()
-                .filter(p -> p.getDoctor().getId().equals(doctorId))
+                .filter(p -> p.getAgent().getId().equals(doctorId))
                 .toList();
     }
 

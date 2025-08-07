@@ -32,7 +32,7 @@ public class Rating {
 
     @ManyToOne
     @NotNull(message = "Doctor is required")
-    private Doctor doctor;
+    private Agent doctor;
 
     @PrePersist
     protected void onCreate() {

@@ -4,7 +4,7 @@ package ahmed.foudi.DocPat.mappers;
 import ahmed.foudi.DocPat.dto.embedded.DoctorDto;
 import ahmed.foudi.DocPat.dto.request.DoctorRequest;
 import ahmed.foudi.DocPat.dto.response.DoctorResponse;
-import ahmed.foudi.DocPat.entities.Doctor;
+import ahmed.foudi.DocPat.entities.Agent;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -14,9 +14,9 @@ import java.util.List;
 public interface DoctorMapper {
     
 
-    Doctor toEntity(DoctorRequest request);
+    Agent toEntity(DoctorRequest request);
 
-    DoctorResponse toResponse(Doctor dto);
-    List<DoctorResponse> toResponseList(List<Doctor> doctors);
-    DoctorDto toEmbedded(Doctor entity);
+    DoctorResponse toResponse(Agent dto);
+    List<DoctorResponse> toResponseList(List<Agent> doctors);
+    DoctorDto toEmbedded(Agent entity);
 } 

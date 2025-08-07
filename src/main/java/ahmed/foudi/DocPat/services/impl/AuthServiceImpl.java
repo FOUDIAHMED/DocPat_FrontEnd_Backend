@@ -8,6 +8,7 @@ import ahmed.foudi.DocPat.dto.request.LoginRequest;
 import ahmed.foudi.DocPat.dto.request.PatientRequest;
 import ahmed.foudi.DocPat.dto.response.AuthResponse;
 import ahmed.foudi.DocPat.entities.Admin;
+import ahmed.foudi.DocPat.entities.Agent;
 import ahmed.foudi.DocPat.entities.Doctor;
 import ahmed.foudi.DocPat.entities.Patient;
 import ahmed.foudi.DocPat.entities.enums.AppRole;
@@ -58,7 +59,7 @@ public class AuthServiceImpl implements AuthService {
                 return AuthResponse.builder()
                         .token(token)
                         .email(email)
-                        .role(AppRole.DOCTOR) // Get role from the database
+                        .role(AppRole.AGENT) // Get role from the database
                         .id(doctor.getId())
                         .firstName(doctor.getFirstName())
                         .lastName(doctor.getLastName())
@@ -73,7 +74,7 @@ public class AuthServiceImpl implements AuthService {
                 return AuthResponse.builder()
                         .token(token)
                         .email(email)
-                        .role(AppRole.PATIENT) // Get role from the database
+                        .role(AppRole.MODERATOR) // Get role from the database
                         .id(patient.getId())
                         .firstName(patient.getFirstName())
                         .lastName(patient.getLastName())
@@ -109,24 +110,20 @@ public class AuthServiceImpl implements AuthService {
 //        if (doctorRepository.findByLicenseNumber(request.getLicenceNumber()).isPresent()) {
 //            throw DuplicateResourceException.licenseNumberExists(request.getLicenceNumber());
 //        }
-        Doctor doctor=new Doctor();
+        Agent doctor=new Agent();
         doctor.setEmail(request.getEmail());
         doctor.setPassword(passwordEncoder.encode(request.getPassword()));
         doctor.setFirstName(request.getFirstName());
         doctor.setLastName(request.getLastName());
         doctor.setPhoneNumber(request.getPhoneNumber());
-        doctor.setMedicalSpecialty(request.getMedicalSpecialty());
-        doctor.setLicenceNumber(request.getLicenceNumber());
         doctor.setAddress(request.getAddress());
-        doctor.setYearsOfExperience(request.getYearsOfExperience());
-        doctor.setConsultation(request.getConsultation());
         doctor.setUpdated_at(LocalDate.now());
         doctor.setProfilePicture(request.getProfilePicture());
-        doctor.setAppRole(AppRole.DOCTOR);
+        doctor.setAppRole(AppRole.AGENT);
         doctor=doctorRepository.save(doctor);
         UserDetails doc = User.withUsername(doctor.getEmail())
                 .password(doctor.getPassword())
-                .roles("DOCTOR")
+                .roles("AGENT")
                 .build();
         String token=jwtService.generateToken(doc);
 
@@ -135,7 +132,7 @@ public class AuthServiceImpl implements AuthService {
                 .email(doctor.getEmail())
                 .firstName(doctor.getFirstName())
                 .lastName(doctor.getLastName())
-                .role(AppRole.DOCTOR)
+                .role(AppRole.AGENT)
                 .id(doctor.getId())
                 .build();
     }
@@ -157,18 +154,18 @@ public class AuthServiceImpl implements AuthService {
         patient.setAddress(request.getAddress());
         patient.setProfilePicture(request.getProfilePicture());
         patient.setEmergencyContact(request.getEmergencyContact());
-        patient.setAppRole(AppRole.PATIENT);
+        patient.setAppRole(AppRole.MODERATOR);
         patient=patientRepository.save(patient);
         UserDetails doc = User.withUsername(patient.getEmail())
                 .password(patient.getPassword())
-                .roles("PATIENT") // Ensure roles are set correctly
+                .roles("MODERATOR") // Ensure roles are set correctly
                 .build();
         String token=jwtService.generateToken(doc);
         return AuthResponse.builder()
                 .token(token)
                 .firstName(patient.getFirstName())
                 .lastName(patient.getLastName())
-                .role(AppRole.PATIENT)
+                .role(AppRole.MODERATOR)
                 .id(patient.getId())
                 .email(patient.getEmail())
                 .build();

@@ -1,6 +1,8 @@
 package ahmed.foudi.DocPat.services.impl;
 
+import ahmed.foudi.DocPat.dao.AgentRepository;
 import ahmed.foudi.DocPat.dto.response.DoctorResponse;
+import ahmed.foudi.DocPat.entities.Agent;
 import ahmed.foudi.DocPat.entities.Doctor;
 import ahmed.foudi.DocPat.mappers.DoctorMapper;
 import ahmed.foudi.DocPat.dao.DoctorRepository;
@@ -14,11 +16,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DoctorServiceImpl implements DoctorService {
     
-    private final DoctorRepository doctorRepository;
+    private final AgentRepository doctorRepository;
     private final DoctorMapper doctorMapper;
 
     @Override
-    public DoctorResponse save(Doctor doctor) {
+    public DoctorResponse save(Agent doctor) {
         return doctorMapper.toResponse(doctorRepository.save(doctor));
     }
 

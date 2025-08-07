@@ -9,7 +9,8 @@ import java.time.LocalTime;
 @Data
 public class AppointmentRequest {
 
-    private LocalDate appointementDate;
+    private LocalDate StartDate;
+    private LocalDate EndDate;
 
 
     private LocalTime appointementTime;

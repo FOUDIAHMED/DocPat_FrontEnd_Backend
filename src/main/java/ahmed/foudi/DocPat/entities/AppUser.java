@@ -37,8 +37,6 @@ public abstract class AppUser {
 
     private String address;
 
-    private String profilePicture;
-
     @Email(message = "Invalid email format")
     @Column(unique = true)
     private String email;

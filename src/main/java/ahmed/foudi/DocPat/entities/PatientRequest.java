@@ -1,6 +1,7 @@
 package ahmed.foudi.DocPat.entities;
 
-import ahmed.foudi.DocPat.entities.enums.AppointementStatus;
+import ahmed.foudi.DocPat.entities.enums.RequestStatus;
+import ahmed.foudi.DocPat.entities.enums.RequestType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -10,17 +11,17 @@ import java.time.LocalTime;
 
 @Entity
 @Data
-public class Appointment {
+public class PatientRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull(message = "Appointment date is required")
+    private LocalDate StartDate;
+    @NotNull(message = "Appointment date is required")
+    private LocalDate EndDate;
 
-    private LocalDate appointementDate;
 
-    @NotNull(message = "Appointment time is required")
-    private LocalTime appointementTime;
 
     private String notes;
 
@@ -28,7 +29,10 @@ public class Appointment {
     private LocalDate created_at;
 
     @Enumerated(EnumType.STRING)
-    private AppointementStatus status;
+    private RequestStatus status;
+
+    @Enumerated(EnumType.STRING)
+    private RequestType type;
 
     @ManyToOne
     @JoinColumn(name = "patient_id")
@@ -36,12 +40,12 @@ public class Appointment {
     private Patient patient;
 
     @ManyToOne
-    @NotNull(message = "Doctor is required")
-    private Doctor doctor;
+    @NotNull(message = "Agent is required")
+    private Agent agent;
 
     @PrePersist
     protected void onCreate() {
         created_at = LocalDate.now();
-        status = AppointementStatus.SCHEDULED;
+        status = RequestStatus.NEW;
     }
 }
